@@ -1,2 +1,2 @@
-# hackathon-project-Generocity
+# Generocity
 Flask application for hackathon project. 
