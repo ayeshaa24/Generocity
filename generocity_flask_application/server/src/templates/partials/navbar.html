@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="{{ url_for('index') }}">
+      <img src="{{ url_for('static', filename='graphics/generocity.png') }}"
+      alt="Generocity" height="22.5" width="150"/></a>
+  </div>
+<div class="container-fluid">
+<ul class="nav navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('index') }}">About Us</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('reach') }}">Our Reach</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ url_for('index') }}">Contact Us</a>
+  </li>
+</ul>
+  <!------------------------------->
+  <!-- Idea generator button -->
+  <!-- Add pop up box here - replace a href="#" -->
+  <!------------------------------->
+<ul class="nav navbar-nav navbar-right">
+  {% if user %}
+  <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('account') }}">Account</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+  </li>
+  {% else %}
+  <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+  </li>
+  {% endif %}
+  <!-- <div class="fab"> <a href="javascript:void(0)" style="text-decoration: none;" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">&#x1f4a1;</a></div> -->
+  <!------------------------------->
+<!--  THis is the previous lightbulb on the nav bar
+<a href="#">
+    <button class="btn navbar-btn" id="idea_generator">
+      <i class="fas fa-lightbulb fa-lg" style="color:#F4FFF6;"></i>
+    </button>
+  </a>
+ -->
+  <!------------------------------->
+
+</ul>
+</div>
+</nav>

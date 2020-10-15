@@ -1,0 +1,103 @@
+html{
+  scroll-behavior: smooth;
+}
+
+h3{
+  padding-top: 2%;
+  color: #343A40;
+}
+
+h4{
+  text-align: center;
+  padding-left: 3%;
+  padding-top: 4%;
+}
+
+h6{
+  color: #806FBF;
+}
+
+hr {
+color: #123455;
+height: 10px;
+}
+
+#header{
+  background-color: #806FBF;
+  height: 20%;
+}
+
+#score_display{
+  padding-top: 1%;
+  padding-right: 2%;
+  text-align: right;
+  color: #806FBF;
+}
+
+#rect{
+  width:150px;
+  height:50px;
+  border:2px solid #343A40;
+  background-color: 10%;
+  display: inline-block;
+  border-radius: 5%;
+  margin-left: 5%;
+}
+
+#round_button{
+  border-radius: 50%;
+  margin: 2%;
+  display: inline-block;
+}
+
+#vertical_seperator{
+  border-left: 3px solid black;
+  height: 98%;
+  /* margin-right: 10%; */
+}
+
+
+#seperator{
+  background-color: #343A40;
+  height: 2%;
+}
+
+.task{
+  background-color: #F4FFF6;
+  margin: 2%;
+  padding: 10%;
+  width:150px;
+  height:50px;
+  border:2px solid #343A40;
+}
+
+div.achievement {
+  border: 1% solid #343A40;
+  float: left;
+  margin: 1%;
+  width: 180px;
+  display: inline-block;
+  opacity: 50%;
+}
+
+div.achievement img {
+  height: auto;
+  width: 100%;
+}
+
+div.achievement:hover {
+  border: 1.5px solid #000;
+}
+
+div.description {
+  /* padding: 15px; */
+  text-align: center;
+}
+
+/* #achievement-0{
+  opacity: 100%;
+} */
+
+div.achieved {
+  opacity: 100%;
+}

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block css %}
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='reach.css')}}">
+{% endblock %}
+{% block content %}
+<h1 class="center">Our Reach</h1>
+<div id="map"> </div>
+<div class="fab"> <a href="javascript:void(0)" style="text-decoration: none;" onclick="generateIdea();document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">&#x1f4a1;</a></div>
+<div id="light" class="content">Generocity ideas 101: {{ generator() }} <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">Close</a>
+  </div>
+  <div id="fade" class="overlay"></div>
+  <script>
+function generateIdea(){
+  console.log('{{ generator() }}');
+}
+ function initMap(){
+   var options = {
+     zoom: 2,
+     center:{lat:54.560886, lng:-2.2125118} // current location: UK
+   }
+var map = new google.maps.Map(document.getElementById('map'), options);
+var infoWindow = new google.maps.InfoWindow({
+      content: '<h5>total no. of users</h5>'
+});
+//var marker;
+var icon = {
+    url: "https://img.icons8.com/fluent/48/000000/marker-storm.png", // url
+    scaledSize: new google.maps.Size(30,30) // scaled size
+};
+//google.maps.event.addListener(map, 'click', function(event) {
+  //  placeMarker(event.latLng);
+    //infoWindow.open(map, marker);
+ //});
+ geocoder = new google.maps.Geocoder();
+function getCountry(country) {
+    if (country == "Undeclared") {
+      return
+    }
+    geocoder.geocode( { 'address': country }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          // map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+               map: map,
+               position: results[0].geometry.location,
+               icon: icon
+           });
+         var infoWindow = new google.maps.InfoWindow({
+                 content: '<h5>Total no. of users: ' + countries[country] + ' </h5>'
+           });
+        infoWindow.open(map, marker);
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+}
+let countries = {{ countries|tojson }}
+for (let country in countries) {
+  getCountry(country);
+}
+ }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt2qCvJx8bnNQjkhHG9qiSsVNzpEYmd6M&callback=initMap">
+
+</script>
+{% endblock content %}

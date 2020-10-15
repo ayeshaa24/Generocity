@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='styles.css')}}">
+{% endblock css %}
+{% block content %}
+<div class="row">
+  <div class="container w3-container" id="header"><p></p></div>
+  <div class="container col-md-8">
+    <h3>Welcome {{ user.firstname }}!</h3>
+    <h6>Location: {{user.location}}</h6>
+  </div>
+
+  <div class = "container col-md-4" id="score_display">
+    <div class = "row ml-auto">
+      <button class="btn btn-default btn-warning addMore"
+              title="Achievements"
+              id="round_button"
+              onclick="window.location.href='#highlights';">
+        <i class="fas fa-trophy"></i>
+      </button>
+
+      <button class="btn btn-default btn-success addMore" title="Reviews" id="round_button">
+        <i class="fas fa-users"></i>
+      </button>
+
+      <button class="btn btn-default btn-info addMore" title="Share" id="round_button">
+        <i class="fas fa-share"></i>
+      </button>
+
+    <div id="rect">
+      <h4>Score: {{ user.points }}</h4>
+    </div>
+    </div>
+  </div>
+  <div class="container col-md-12">
+    <form method="POST" action="" autocomplete="off">
+        {{ form.hidden_tag() }}
+        <!-- adds csrf token -->
+        <br>
+        <fieldset class="form-group">
+            <legend class="border-bottom xs-2">Add New Task</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    {{ form.title(class="form-control form-control-sm is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-sm") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.desc.label(class="form-control-label") }}
+                {% if form.desc.errors %}
+                    {{ form.desc(class="form-control form-control-sm is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.desc.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.desc(class="form-control form-control-sm") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.category.label(class="form-control-label") }}
+                {% if form.category.errors %}
+                    {{ form.category(class="form-control form-control-sm is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.category.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.category(class="form-control form-control-sm") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+    </div>
+
+    <!-- <div class="container col-md-6">
+      <div id="vertical_seperator">
+        <br>
+        <fieldset class="form-group">
+            <legend class="border-bottom xs-2">Previously Logged Tasks</legend>
+        </fieldset>
+        <div class="container task">
+        </div>
+      </div>
+
+    </div> -->
+
+  <div class="container w1-container" id="seperator"><p></p></div>
+  <!-- Add achivements/ image gallery -->
+  <div class="container col-md-12" id="highlights">
+    <h3> Awards </h3>
+    {% for name, b in badges %}
+      {% if b in user.b_earnt.keys() %}
+      <div class="achievement achieved">
+        <img src="{{ url_for('static', filename='graphics/badges/{}.jpg'.format(b))}}" alt="Achievement achieved" width="600" height="400">
+        <div class="description">{{ name }}</div>
+      </div>
+      {% else %}
+      <div class="achievement">
+        <img src="{{ url_for('static', filename='graphics/badges/{}.jpg'.format(b))}}" alt="Achievement unachieved" width="600" height="400">
+        <div class="description">{{ name }}</div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
